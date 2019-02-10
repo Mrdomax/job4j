@@ -10,7 +10,7 @@ public class Calculate {
 * Конструктор, вывод строки в консоль
 * @param args - arg.
 */	
-public static void main(String[] args){
+public static void main(String[] args) {
 System.out.println("Hello World");
 }
 
