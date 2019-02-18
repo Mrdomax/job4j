@@ -41,8 +41,8 @@ public class Logic {
         boolean result = cells.length > 0;
         for (Cell cell : cells) {
             if (this.findBy(cell) != -1) {
-               result = false;
-               break;
+                result = false;
+                break;
             }
         }
         return result;
@@ -69,24 +69,33 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        for (int out = 0; out != table.length - 2; out++) {
-            for (int inner = 0; inner != table.length - 2; inner++) {
-                /**
-                 * Проверка горизонтали.
-                 */
-                if (table[out][inner] == table[out][inner + 1]) {
-                    result = true;
-                }
-                /**
-                 * Проверка вертикали
-                 */
-                if (table[out][inner] == table[out + 1][inner]) {
-                    result = true;
+        for (int row = 0; row != table.length; row++) {
+            for (int cell = 0; cell != table.length - 1; cell++) {
+                if (table[row][0] == 1) {
+                    if (table[row][0] == table[row][1]) {
+                        if (table[row][1] == table[row][2]) {
+                            if (table[row][2] == table[row][3]) {
+                                if (table[row][3] == table[row][4]) {
+                                    result = true;
+                                }
+                            }
+                        }
+                    }
 
+                } else if (table [0][cell] == 1) {
+                    if (table [0][cell] == table [1][cell]) {
+                        if (table [1][cell] == table [2][cell]) {
+                            if (table [2][cell] == table [3][cell]) {
+                                if (table [3][cell] == table [4][cell]) {
+                                    result = true;
+                                }
+                            }
+                        }
+                    }
                 }
-            }
         }
-        return result;
+
+    } return result;
     }
 
     public int[][] convert() {
