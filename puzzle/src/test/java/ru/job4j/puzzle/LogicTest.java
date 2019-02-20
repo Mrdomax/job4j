@@ -1,5 +1,11 @@
 package ru.job4j.puzzle;
-
+/**
+ *
+ *
+ * @author Petr Arsentev (parsentev@yandex.ru) + Kasyan Semenchenko
+ * @version $Id$
+ * @since 0.1
+ */
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -51,6 +57,23 @@ public class LogicTest {
                         {1, 1, 0, 1, 1},
                         {0, 0, 1, 0, 0},
                         {0, 0, 1, 0, 0},
+                };
+            }
+        };
+        assertThat(logic.isWin(), is(false));
+    }
+
+    @Test
+    public void whenNotWinYet() {
+        Logic logic = new Logic(5) {
+            @Override
+            public int[][] convert() {
+                return new int[][] {
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1},
+                        {1, 1, 1, 1, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0},
                 };
             }
         };

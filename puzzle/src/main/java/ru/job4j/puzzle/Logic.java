@@ -6,7 +6,7 @@ import ru.job4j.puzzle.firuges.Figure;
 /**
  * //TODO add comments.
  *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Petr Arsentev (parsentev@yandex.ru) + Kasyan Semenchenko
  * @version $Id$
  * @since 0.1
  */
@@ -70,32 +70,19 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         for (int row = 0; row != table.length; row++) {
-            for (int cell = 0; cell != table.length - 1; cell++) {
-                if (table[row][0] == 1) {
-                    if (table[row][0] == table[row][1]) {
-                        if (table[row][1] == table[row][2]) {
-                            if (table[row][2] == table[row][3]) {
-                                if (table[row][3] == table[row][4]) {
-                                    result = true;
-                                }
-                            }
-                        }
-                    }
-
-                } else if (table [0][cell] == 1) {
-                    if (table [0][cell] == table [1][cell]) {
-                        if (table [1][cell] == table [2][cell]) {
-                            if (table [2][cell] == table [3][cell]) {
-                                if (table [3][cell] == table [4][cell]) {
-                                    result = true;
-                                }
-                            }
-                        }
-                    }
+            int a = 0;
+            int b = 0;
+            for (int cell = 0; cell != table.length; cell++) {
+                a = a + table[row][cell];
+                if (a == table.length) {
+                    result = true; break;
                 }
+                b = b + table[cell][row];
+                if (b == table.length) {
+                    result = true; break;
+            }
         }
-
-    } return result;
+    }return result;
     }
 
     public int[][] convert() {
