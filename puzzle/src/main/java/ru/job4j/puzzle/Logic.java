@@ -8,7 +8,7 @@ import ru.job4j.puzzle.firuges.Figure;
  *
  * @author Petr Arsentev (parsentev@yandex.ru) + Kasyan Semenchenko
  * @version $Id$
- * @since 0.1
+ * @since 0.2
  */
 public class Logic {
     private final int size;
@@ -74,27 +74,27 @@ public class Logic {
             int b = 0;
             for (int cell = 0; cell != table.length; cell++) {
                 a = a + table[row][cell];
-                if (a == table.length) {
-                    result = true; break;
-                }
                 b = b + table[cell][row];
-                if (b == table.length) {
-                    result = true; break;
             }
-        }
-    }return result;
+            if (a == table.length) {
+                result = true; break;
+            }
+            if (b == table.length) {
+                result = true; break;
+            }
+        }return result;
     }
 
-    public int[][] convert() {
-        int[][] table = new int[this.size][this.size];
-        for (int row = 0; row != table.length; row++) {
-            for (int cell = 0; cell != table.length; cell++) {
-                int position = this.findBy(new Cell(row, cell));
-                if (position != -1 && this.figures[position].movable()) {
-                    table[row][cell] = 1;
+        public int[][] convert() {
+            int[][] table = new int[this.size][this.size];
+            for (int row = 0; row != table.length; row++) {
+                for (int cell = 0; cell != table.length; cell++) {
+                    int position = this.findBy(new Cell(row, cell));
+                    if (position != -1 && this.figures[position].movable()) {
+                        table[row][cell] = 1;
+                    }
                 }
             }
+            return table;
         }
-        return table;
     }
-}

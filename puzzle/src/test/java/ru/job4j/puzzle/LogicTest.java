@@ -4,7 +4,7 @@ package ru.job4j.puzzle;
  *
  * @author Petr Arsentev (parsentev@yandex.ru) + Kasyan Semenchenko
  * @version $Id$
- * @since 0.1
+ * @since 0.2
  */
 import org.junit.Test;
 
