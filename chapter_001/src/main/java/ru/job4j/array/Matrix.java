@@ -9,7 +9,7 @@ public class Matrix {
     /**
      *
      * @param size
-     * @return
+     * @return таблицу умножения
      */
     public int[][] multiple(int size) {
         int[][] table = new int[size][size];

@@ -9,15 +9,17 @@ public class Factorial {
      * Metod !
      * @param n
      * @param
-     * @return
+     * @return Возвращает факториал числа
      */
     public int calc(int n) {
         int a = 1;
-        if (n <= 1)
+        if (n <= 1) {
             return 1;
-        else
-            for (int i = 2; i <= n ; i++) {
-            a = a*i;
-            } return a;
+        } else {
+            for (int i = 2; i <= n; i++) {
+                a = a * i;
+            }
+            return a;
         }
     }
+}

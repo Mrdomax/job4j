@@ -7,30 +7,20 @@ package ru.job4j.array;
  */
 public class MatrixCheck {
     /**
-     *
+     *  Проверка диагоналей.
+     *  Они не обязательно равны.
+     *  Они не обязательно имеют общие ячейки.
      * @param data
-     * @return
+     * @return  boolean одинаковые/нет диагонали массива
      */
     public boolean mono(boolean[][] data) {
         boolean result = true;
-         /**
-         *  Проверка диагоналей.
-         *  Они не обязательно равны.
-         *  Они не обязательно имеют общие ячейки.
-         */
         for (int out = 0; out != data.length - 2; out++) {
             for (int inner = 0; inner != data.length - 2; inner++) {
-                /**
-                 * Проверка первой диагонали
-                 */
                 if (data[out][inner] != data[out + 1][inner + 1]) {
                     result = false;
                     break;
-
                 }
-                /**
-                 * Проверка второй диагонали
-                 */
                 if (data[out][data.length - 1 - out] != data[out + 1][data.length - 1 - (out + 1)]) {
                     result = false;
                     break;

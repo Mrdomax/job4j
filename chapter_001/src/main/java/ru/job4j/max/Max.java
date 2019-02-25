@@ -22,7 +22,7 @@ public class Max {
      * @return возвращает большее из трёх
      */
     public int max(int first, int second, int third) {
-        int temp = this.max(this.max(first, second),third);
+        int temp = this.max(this.max(first, second), third);
         return temp;
     }
 

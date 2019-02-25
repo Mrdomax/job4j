@@ -8,6 +8,11 @@ import java.util.function.BiPredicate;
  * @since 0.1
  */
 public class Paint {
+    /**
+     *
+     * @param height
+     * @return рисуем правую пирамиду заданных параметров
+     */
     public String rightTrl(int height) {
         return this.loopBy(
                 height,
@@ -16,6 +21,11 @@ public class Paint {
         );
     }
 
+    /**
+     *
+     * @param height
+     * @return рисуем левую половину заданных параметров
+     */
     public String leftTrl(int height) {
         return this.loopBy(
                 height,
@@ -24,6 +34,11 @@ public class Paint {
         );
     }
 
+    /**
+     *
+     * @param height
+     * @return рисуем полную пирамиду заданных параметров
+     */
     public String pyramid(int height) {
         return this.loopBy(
                 height,
@@ -32,6 +47,13 @@ public class Paint {
         );
     }
 
+    /**
+     *
+     * @param height
+     * @param weight
+     * @param predict
+     * @return рисуем целую пирамиду заданной высоты и ширины
+     */
     private String loopBy(int height, int weight, BiPredicate<Integer, Integer> predict) {
         StringBuilder screen = new StringBuilder();
         for (int row = 0; row != height; row++) {

@@ -1,6 +1,13 @@
 package ru.job4j.calculate;
 
+/**
+ * @author Semenchenko
+ */
 public class CarUsage {
+    /**
+     * Выводим описательную информацию об объекте на консоль.
+     * @param args
+     */
     public static void main(String[] args) {
         Car audi = new Car();
         boolean driving = audi.canDrive();

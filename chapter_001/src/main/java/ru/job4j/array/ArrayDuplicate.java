@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class ArrayDuplicate {
     /**
      * @param array
-     * @return
+     * @return возвращает массив без дубликатов элементов.
      */
     public String[] remove(String[] array) {
         int unique = array.length;

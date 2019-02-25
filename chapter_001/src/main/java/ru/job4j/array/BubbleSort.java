@@ -7,7 +7,7 @@ public class BubbleSort {
     /**
      *
      * @param array
-     * @return
+     * @return сортированный массив
      */
     public int[] sort(int[] array) {
         for (int a = 0; a < array.length - 1; a++) {

@@ -37,15 +37,13 @@ public class Triangle {
      * @return Вернуть площадь, если треугольник существует, или -1, если треугольника нет.
      */
     public double area() {
-        double rsl = -1; // мы устанавливаем значение -1, так как может быть что треугольника нет. Это значение говорит о том, что треугольника нет.
+        double rsl = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
-            // написать формулу для расчета площади треугольника.
-            rsl = Math.sqrt(p*(p-ab)*(p-ac)*(p-bc)); //вместо многоточия нужно написать формулу Герона с подставленными переменными ab, ac, bc, p.
-            // Для извлечение квадратного корня надо использовать метод Math.sqrt()
+            rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
         return rsl;
     }
