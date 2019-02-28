@@ -6,7 +6,7 @@ package ru.job4j.tracker;
 
 public class Profession {
 
-    public String name;
+    private String name;
 
     public Profession() {
     }
@@ -17,5 +17,9 @@ public class Profession {
 
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

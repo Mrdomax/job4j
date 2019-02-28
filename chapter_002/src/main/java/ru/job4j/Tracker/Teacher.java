@@ -6,9 +6,6 @@ package ru.job4j.tracker;
 public class Teacher extends Profession {
     public Teacher() {
     }
-    public Teacher(String name) {
-        this.name = name;
-    }
     public void teach() {
     }
 }

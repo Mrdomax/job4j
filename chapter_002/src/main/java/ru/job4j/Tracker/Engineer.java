@@ -4,10 +4,7 @@ package ru.job4j.tracker;
  */
 
 public class Engineer extends Profession {
-    public Engineer(){
-    }
-    public Engineer(String name) {
-        this.name = name;
+    public Engineer() {
     }
     public void build() {
     }

@@ -6,8 +6,4 @@ package ru.job4j.tracker;
 public class Home extends Engineer {
     public Home() {
     }
-    public Home(String name) {
-        this.name = name;
-    }
-
 }
