@@ -1,4 +1,5 @@
 package ru.job4j.tracker;
+
 /**
  * @Autor Semenchenko Kasian
  */
@@ -6,6 +7,7 @@ package ru.job4j.tracker;
 public class Engineer extends Profession {
     public Engineer() {
     }
+
     public void build() {
     }
 }

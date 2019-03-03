@@ -11,7 +11,6 @@ package ru.job4j.array;
 public class BubbleSortTest {
     @Test
     public void whenSortArrayWithTenElementsThenSortedArray() {
-        //напишите здесь тест, проверяющий сортировку массива из 10 элементов методом пузырька, например {1, 5, 4, 2, 3, 1, 7, 8, 0, 5}.
         BubbleSort turner = new BubbleSort();
         int[] input = new int[] {1, 5, 4, 2, 3, 1, 7, 8, 0, 5};
         int[] result = turner.sort(input);
