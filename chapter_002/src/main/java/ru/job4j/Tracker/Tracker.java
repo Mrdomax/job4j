@@ -65,7 +65,7 @@ public class Tracker {
                 result[k++] = items[i];
             }
         }
-        return Arrays.copyOf(result,k);
+        return Arrays.copyOf(result, k);
     }
 
     /**

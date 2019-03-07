@@ -82,7 +82,7 @@ public class Logic {
             if (b == table.length) {
                 result = true; break;
             }
-        }return result;
+        } return result;
     }
 
         public int[][] convert() {
