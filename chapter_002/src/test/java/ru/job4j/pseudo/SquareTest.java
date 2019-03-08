@@ -18,10 +18,14 @@ public class SquareTest {
                 square.draw(),
                 is(
                         new StringBuilder()
-                                .append("++++++\n")
-                                .append("++++++\n")
-                                .append("++++++\n")
-                                .append("++++++\n")
+                                .append("++++++")
+                                .append(System.lineSeparator())
+                                .append("++++++")
+                                .append(System.lineSeparator())
+                                .append("++++++")
+                                .append(System.lineSeparator())
+                                .append("++++++")
+                                .append(System.lineSeparator())
                                 .toString()
                 )
         );
