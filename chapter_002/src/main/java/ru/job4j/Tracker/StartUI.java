@@ -90,8 +90,8 @@ public class StartUI {
     }
 
     private void showAll() {
-        System.out.println(" ");
-        System.out.println(" ");
+        System.out.println();
+        System.out.println();
         System.out.println("------------ Список всех заявок --------------");
         Item[] items = tracker.findAll();
         for (Item item : items) {
@@ -100,8 +100,8 @@ public class StartUI {
             System.out.println("Id заявки: " + item.getId());
             System.out.println("----------------------------------------------");
         }
-        System.out.println(" ");
-        System.out.println(" ");
+        System.out.println();
+        System.out.println();
     }
 
     private void editItem() {
