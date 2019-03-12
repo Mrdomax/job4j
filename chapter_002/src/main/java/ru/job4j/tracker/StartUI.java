@@ -36,6 +36,8 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private boolean working = true;
+
 
     /**
      * Конструтор инициализирующий поля.
@@ -47,34 +49,24 @@ public class StartUI {
         this.tracker = tracker;
     }
 
+    public StartUI() {
+
+    }
 
     /**
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
-            if (ADD.equals(answer)) {
-                //добавление заявки вынесено в отдельный метод.
-                this.createItem();
-           } else if (SHOW.equals(answer)) {
-                this.showAll();
-//             Добавить остальные действия системы по меню.
-            } else if (EDIT.equals(answer)) {
-                this.editItem();
-//             Добавить остальные действия системы по меню.
-            } else if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else if (FINDID.equals(answer)) {
-                this.findId();
-            } else if (FINDNAME.equals(answer)) {
-                this.findName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
-        }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.valueOf(input.ask("select:")));
+        } while (this.working == true);
+    }
+
+    public void stop() {
+        this.working = false;
     }
 
     /**
