@@ -97,10 +97,8 @@ public class StartUITest {
         // создаём Tracker
         Tracker tracker = new Tracker();
         //Напрямую добавляем заявку
-        Item item = tracker.add(new Item("test name", "desc", "1000000000000"));
-        item.setId("1000000000000");
-        Item item2 = tracker.add(new Item("test name2", "desc2", "2000000000000"));
-        item2.setId("2000000000000");
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test name2", "desc2"));
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
         assertThat(
@@ -114,7 +112,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("Описание заявки: desc")
                         .append(System.lineSeparator())
-                        .append("Id заявки: 1000000000000")
+                        .append("Id заявки: ").append(item.getId())
                         .append(System.lineSeparator())
                         .append("----------------------------------------------")
                         .append(System.lineSeparator())
@@ -122,7 +120,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("Описание заявки: desc2")
                         .append(System.lineSeparator())
-                        .append("Id заявки: 2000000000000")
+                        .append("Id заявки: ").append(item2.getId())
                         .append(System.lineSeparator())
                         .append("----------------------------------------------")
                         .append(System.lineSeparator())
@@ -137,10 +135,8 @@ public class StartUITest {
         // создаём Tracker
         Tracker tracker = new Tracker();
         //Напрямую добавляем заявку
-        Item item = tracker.add(new Item("test name", "desc", "1000000000000"));
-        item.setId("1000000000000");
-        Item item2 = tracker.add(new Item("test name", "desc2", "2000000000000"));
-        item2.setId("2000000000000");
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test name", "desc2"));
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
         new StartUI(input, tracker).init();
         assertThat(
@@ -152,7 +148,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("Описание заявки: desc")
                         .append(System.lineSeparator())
-                        .append("Id заявки: 1000000000000")
+                        .append("Id заявки: ").append(item.getId())
                         .append(System.lineSeparator())
                         .append("----------------------------------------------")
                         .append(System.lineSeparator())
@@ -160,7 +156,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("Описание заявки: desc2")
                         .append(System.lineSeparator())
-                        .append("Id заявки: 2000000000000")
+                        .append("Id заявки: ").append(item2.getId())
                         .append(System.lineSeparator())
                         .append("----------------------------------------------")
                         .append(System.lineSeparator())
