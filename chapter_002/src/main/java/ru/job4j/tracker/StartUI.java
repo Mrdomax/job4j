@@ -49,20 +49,17 @@ public class StartUI {
         this.tracker = tracker;
     }
 
-    public StartUI() {
-
-    }
 
     /**
      * Основой цикл программы.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
         menu.fillActions();
         do {
             menu.show();
             menu.select(Integer.valueOf(input.ask("select:")));
-        } while (this.working == true);
+        } while (this.working);
     }
 
     public void stop() {

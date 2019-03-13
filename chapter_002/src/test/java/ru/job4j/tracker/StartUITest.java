@@ -103,7 +103,7 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(
                 this.out.toString(),
-                is( menu + new StringBuilder()
+                is(menu + new StringBuilder()
                         .append(System.lineSeparator())
                         .append(System.lineSeparator())
                         .append("------------ Список всех заявок --------------")
@@ -141,7 +141,7 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(
                 this.out.toString(),
-                is( menu + new StringBuilder()
+                is(menu + new StringBuilder()
                         .append("------------ Поиск заявки по имени --------------")
                         .append(System.lineSeparator())
                         .append("Имя заявки: test name")

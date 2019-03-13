@@ -12,6 +12,8 @@ public class MenuTracker {
      * @param хранит ссылку на объект .
      */
     private Tracker tracker;
+
+    private StartUI ui;
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
@@ -23,13 +25,14 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, StartUI ui) {
         this.input = input;
         this.tracker = tracker;
+        this.ui = ui;
     }
     private class AddItem implements UserAction {
 
-        public AddItem(int key, String info){
+        public AddItem(int key, String info) {
 
         }
 
@@ -79,7 +82,7 @@ public class MenuTracker {
         }
 
         @Override
-        public String info () {
+        public String info() {
             return "Show all items.";
         }
     }
@@ -111,7 +114,7 @@ public class MenuTracker {
         }
 
         @Override
-        public String info () {
+        public String info() {
             return "Edit item.";
         }
     }
@@ -140,7 +143,7 @@ public class MenuTracker {
         }
 
         @Override
-        public String info () {
+        public String info() {
             return "Delete item.";
         }
 
@@ -169,7 +172,7 @@ public class MenuTracker {
         }
 
         @Override
-        public String info () {
+        public String info() {
             return "Find item by Id.";
         }
 
@@ -200,7 +203,7 @@ public class MenuTracker {
         }
 
         @Override
-        public String info () {
+        public String info() {
             return "Find items by name.";
         }
 
@@ -217,15 +220,14 @@ public class MenuTracker {
         public int key() {
             return 6;
         }
-        StartUI start = new StartUI();
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Exit Program --------------");
-            start.stop();
+            ui.stop();
         }
 
         @Override
-        public String info () {
+        public String info() {
             return "Exit Program.";
         }
 
