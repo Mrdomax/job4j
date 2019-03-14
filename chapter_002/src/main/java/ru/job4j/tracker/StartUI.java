@@ -1,5 +1,5 @@
 package ru.job4j.tracker;
-
+import java.util.*;
 /**
  * @version $Id$
  * @since 0.1
@@ -20,6 +20,7 @@ public class StartUI {
 
     private static final String FINDNAME = "5";
 
+    private int[] ranges = new int[] {1, 2, 3, 4, 5, 6};
 
 
     /**
@@ -55,10 +56,14 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
+        List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range.add(i);
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", range));
         } while (this.working);
     }
 
@@ -155,6 +160,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
