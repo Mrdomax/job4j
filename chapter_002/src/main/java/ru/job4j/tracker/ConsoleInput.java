@@ -14,7 +14,7 @@ private Scanner scanner = new Scanner(System.in);
         int key = Integer.valueOf(this.ask(question));
         boolean exist = false;
         for (int value : range) {
-            if(value == key) {
+            if (value == key) {
                 exist = true;
                 break;
             }

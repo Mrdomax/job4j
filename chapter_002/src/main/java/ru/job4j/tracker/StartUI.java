@@ -63,7 +63,7 @@ public class StartUI {
         }
         do {
             menu.show();
-            menu.select(input.ask("select:", range));
+            menu.select(input.ask("select:", ranges));
         } while (this.working);
     }
 
