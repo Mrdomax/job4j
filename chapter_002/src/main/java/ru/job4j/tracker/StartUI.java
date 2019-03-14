@@ -20,7 +20,7 @@ public class StartUI {
 
     private static final String FINDNAME = "5";
 
-    private int[] ranges = new int[] {1, 2, 3, 4, 5, 6};
+
 
 
     /**
@@ -39,6 +39,7 @@ public class StartUI {
 
     private boolean working = true;
 
+    private int[] ranges = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
 
     /**
      * Конструтор инициализирующий поля.

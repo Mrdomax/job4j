@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 import java.util.*;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
 public class MenuTracker {
     /**
@@ -55,7 +54,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Add new Item.";
+            return "0. Add new Item.";
         }
     }
 
@@ -72,18 +71,23 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Show all items --------------");
+            System.out.println();
+            System.out.println();
+            System.out.println("------------ Список всех заявок --------------");
             Item[] items = tracker.findAll();
             for (Item item : items) {
                 System.out.println("Имя заявки: " + item.getName());
                 System.out.println("Описание заявки: " + item.getDesc());
                 System.out.println("Id заявки: " + item.getId());
+                System.out.println("----------------------------------------------");
             }
+            System.out.println();
+            System.out.println();
         }
 
         @Override
         public String info() {
-            return "Show all items.";
+            return "1. Show all items.";
         }
     }
 
@@ -115,7 +119,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Edit item.";
+            return "2. Edit item.";
         }
     }
 
@@ -144,7 +148,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Delete item.";
+            return "3. Delete item.";
         }
 
     }
@@ -173,7 +177,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Find item by Id.";
+            return "4. Find item by Id.";
         }
 
     }
@@ -191,7 +195,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Find items by name --------------");
+            System.out.println("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
             Item[] items = tracker.findByName(name);
             for (Item item : items) {
@@ -204,7 +208,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Find items by name.";
+            return "5. Find items by name.";
         }
 
     }
@@ -228,7 +232,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Exit Program.";
+            return "6. Exit Program.";
         }
 
     }
@@ -267,6 +271,7 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
+        System.out.println("Меню.");
         for (UserAction action : this.actions) {
             if (action != null) {
                 System.out.println(action.info());

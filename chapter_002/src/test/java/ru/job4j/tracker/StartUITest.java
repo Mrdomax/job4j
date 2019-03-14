@@ -126,7 +126,8 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append(System.lineSeparator())
                         .append(System.lineSeparator())
-                        .toString() + menu
+                        .toString() + menu + "------------ Exit Program --------------" + (System.lineSeparator())
+
                 ));
     }
 
@@ -160,7 +161,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("----------------------------------------------")
                         .append(System.lineSeparator())
-                        .toString() + menu
+                        .toString() + menu + "------------ Exit Program --------------" + (System.lineSeparator())
                 ));
     }
 
