@@ -169,7 +169,7 @@ public class MenuTracker {
      *
      * @return длину массива
      */
-    public int getActionsLentgh() {
+    public int getActionsLength() {
         return this.actions.size();
     }
 
@@ -186,7 +186,12 @@ public class MenuTracker {
         this.actions.add(new ExitProgram(key++, "Exit Program."));
     }
 
-
+   public int[] menuNambers() {
+   int[] ranges = new int[getActionsLength()];
+       for (int i = 0; i < getActionsLength(); i++) {
+           ranges[i] = i;
+       } return ranges;
+   }
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
      *

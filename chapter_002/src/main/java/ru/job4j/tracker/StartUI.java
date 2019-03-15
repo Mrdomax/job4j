@@ -37,7 +37,6 @@ public class StartUI {
 
     private boolean working = true;
 
-    private int[] ranges = new int[]{0, 1, 2, 3, 4, 5, 6, 7};
 
     /**
      * Конструтор инициализирующий поля.
@@ -58,18 +57,20 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
         List<Integer> range = new ArrayList<>();
         menu.fillActions();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+        for (int i = 0; i < menu.getActionsLength(); i++) {
             range.add(i);
         }
         do {
             menu.show();
-            menu.select(input.ask("select:", ranges));
+            menu.select(input.ask("select:", menu.menuNambers()));
         } while (this.working);
     }
 
     public void stop() {
         this.working = false;
     }
+
+
 
     /**
      * Метод реализует добавленяи новый заявки в хранилище.
