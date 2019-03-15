@@ -21,8 +21,6 @@ public class StartUI {
     private static final String FINDNAME = "5";
 
 
-
-
     /**
      * Константа для выхода из цикла.
      */
@@ -39,11 +37,12 @@ public class StartUI {
 
     private boolean working = true;
 
-    private int[] ranges = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
+    private int[] ranges = new int[]{0, 1, 2, 3, 4, 5, 6, 7};
 
     /**
      * Конструтор инициализирующий поля.
-     * @param input ввод данных.
+     *
+     * @param input   ввод данных.
      * @param tracker хранилище заявок.
      */
     public StartUI(Input input, Tracker tracker) {
@@ -158,9 +157,15 @@ public class StartUI {
 
     /**
      * Запускт программы.
+     *
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(
+                new ValidateInput(
+                        new ConsoleInput()
+                ),
+                new Tracker()
+        ).init();
     }
 }
