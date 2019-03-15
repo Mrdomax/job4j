@@ -17,7 +17,7 @@ public class MenuTracker {
      * @param хранит ссылку на массив типа UserAction.
      */
     private List<UserAction> actions = new ArrayList<>();
-
+    private int key = 0;
     /**
      * Конструктор.
      *
@@ -29,15 +29,10 @@ public class MenuTracker {
         this.tracker = tracker;
         this.ui = ui;
     }
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseAction {
 
-        public AddItem(int key, String info) {
-
-        }
-
-        @Override
-        public int key() {
-            return 0;
+        public AddItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -51,22 +46,12 @@ public class MenuTracker {
             System.out.println("------------ New Item with Name : " + item.getName());
             System.out.println("------------ New Item with Description : " + item.getDesc());
         }
-
-        @Override
-        public String info() {
-            return "0. Add new Item.";
-        }
     }
 
-    private class ShowItems implements UserAction {
+    private class ShowItems extends BaseAction {
 
-        public ShowItems(int key, String info) {
-
-        }
-
-        @Override
-        public int key() {
-            return 1;
+        public ShowItems(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -84,24 +69,15 @@ public class MenuTracker {
             System.out.println();
             System.out.println();
         }
-
-        @Override
-        public String info() {
-            return "1. Show all items.";
-        }
     }
 
-    private class UpdateItem implements UserAction {
 
-        public UpdateItem(int key, String info) {
 
+    private class UpdateItem extends BaseAction {
+
+        public UpdateItem(int key, String name) {
+            super(key, name);
         }
-
-        @Override
-        public int key() {
-            return 2;
-        }
-
 
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -116,22 +92,12 @@ public class MenuTracker {
                 System.out.println("Ваша заявка не отредактирована");
             }
         }
-
-        @Override
-        public String info() {
-            return "2. Edit item.";
-        }
     }
 
-    private class DeleteItem implements UserAction {
+    private class DeleteItem extends BaseAction {
 
-        public DeleteItem(int key, String info) {
-
-        }
-
-        @Override
-        public int key() {
-            return 3;
+        public DeleteItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -143,25 +109,13 @@ public class MenuTracker {
             } else {
                 System.out.println("Ваша заявка не удалена");
             }
-
         }
-
-        @Override
-        public String info() {
-            return "3. Delete item.";
-        }
-
     }
 
-    private class FindItemById implements UserAction {
+    private class FindItemById extends BaseAction {
 
-        public FindItemById(int key, String info) {
-
-        }
-
-        @Override
-        public int key() {
-            return 4;
+        public FindItemById(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -175,22 +129,12 @@ public class MenuTracker {
 
         }
 
-        @Override
-        public String info() {
-            return "4. Find item by Id.";
-        }
-
     }
 
-    private class FindItemsByName implements UserAction {
+    private class FindItemsByName extends BaseAction {
 
-        public FindItemsByName(int key, String info) {
-
-        }
-
-        @Override
-        public int key() {
-            return 5;
+        public FindItemsByName(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -205,36 +149,20 @@ public class MenuTracker {
                 System.out.println("----------------------------------------------");
             }
         }
-
-        @Override
-        public String info() {
-            return "5. Find items by name.";
-        }
-
     }
 
-    private class ExitProgram implements UserAction {
+    private class ExitProgram extends BaseAction {
 
 
-        public ExitProgram(int key, String info) {
-
+        public ExitProgram(int key, String name) {
+            super(key, name);
         }
 
-        @Override
-        public int key() {
-            return 6;
-        }
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Exit Program --------------");
             ui.stop();
         }
-
-        @Override
-        public String info() {
-            return "6. Exit Program.";
-        }
-
     }
     /**
      * Метод для получения массива меню.
@@ -249,14 +177,15 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Add program"));
-        this.actions.add(new ShowItems(1, "Show all items"));
-        this.actions.add(new UpdateItem(2, "Edit item"));
-        this.actions.add(new DeleteItem(3, "Delete item"));
-        this.actions.add(new FindItemById(4, "Find item by Id"));
-        this.actions.add(new FindItemsByName(5, "Find items by name"));
-        this.actions.add(new ExitProgram(6, "Exit Program"));
+        this.actions.add(new AddItem(key++, "Add new Item."));
+        this.actions.add(new ShowItems(key++, "Show all items."));
+        this.actions.add(new UpdateItem(key++, "Edit item."));
+        this.actions.add(new DeleteItem(key++, "Delete item."));
+        this.actions.add(new FindItemById(key++, "Find item by Id."));
+        this.actions.add(new FindItemsByName(key++, "Find items by name."));
+        this.actions.add(new ExitProgram(key++, "Exit Program."));
     }
+
 
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
