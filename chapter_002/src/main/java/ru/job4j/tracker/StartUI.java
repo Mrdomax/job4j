@@ -57,12 +57,13 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
         List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        int[] ranges = menu.menuNambers();
         for (int i = 0; i < menu.getActionsLength(); i++) {
             range.add(i);
         }
         do {
             menu.show();
-            menu.select(input.ask("select:", menu.menuNambers()));
+            menu.select(input.ask("select:", ranges));
         } while (this.working);
     }
 
