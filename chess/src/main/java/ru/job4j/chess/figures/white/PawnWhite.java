@@ -6,7 +6,7 @@ import ru.job4j.chess.figures.Figure;
 /**
  * //TODO add comments.
  *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Kasian Semenchenko
  * @version $Id$
  * @since 0.1
  */

@@ -5,7 +5,7 @@ import ru.job4j.chess.figures.Figure;
 
 /**
  *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Kasian Semenchenko
  * @version $Id$
  * @since 0.1
  */
@@ -24,17 +24,21 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[0];
         int deltay = dest.y - source.y;
         int deltax = dest.x - source.x;
+        int dymod = dest.y - source.y;
+        int dxmod = dest.x - source.x;
         if (deltay < 0) {
-            deltay = deltay * -1;
+            dymod = deltay * -1;
         }
         if (deltax < 0) {
-            deltax = deltax * -1;
+            dxmod = deltax * -1;
         }
-        if (deltay == deltax) {
-            steps = new Cell[] {dest};
+        Cell[] steps = new Cell[dxmod];
+        if (dymod == dxmod) {
+            for (int i = 0; i < dxmod; i++) {
+                steps[i] = Cell.values()[8 * (source.x + (i + 1) * deltax / dxmod) + (source.y + (i + 1) * deltay / dymod)];
+            }
         }
         return steps;
     }
