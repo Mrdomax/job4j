@@ -3,6 +3,15 @@ package ru.job4j;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.junit.After;
+import org.junit.Before;
+import ru.job4j.chess.Logic;
+import ru.job4j.chess.figures.Figure;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Unit test for simple App.
@@ -30,5 +39,11 @@ public class AppTest
      */
     public void testApp() {
         assertTrue(true);
+    }
+
+@org.junit.Test
+    public void whenMove() {
+        Logic logic = new Logic();
+
     }
 }

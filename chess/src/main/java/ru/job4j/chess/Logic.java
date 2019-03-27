@@ -14,24 +14,6 @@ public class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
 
-    private class ImpossibleMoveException extends RuntimeException {
-        public ImpossibleMoveException(String msg) {
-            super(msg);
-        }
-    }
-
-    private class OccupiedWayException extends RuntimeException {
-        public OccupiedWayException(String msg) {
-            super(msg);
-        }
-    }
-
-    private class FigureNotFoundException extends RuntimeException {
-        public FigureNotFoundException(String msg) {
-            super(msg);
-        }
-    }
-
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
@@ -41,12 +23,9 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
-            for (int a = 0; a < figures.length; a++) {
-                for (int b = 0; b < steps.length; b++) {
-                    if (figures[a].equals(steps[b])) {
+            Logic ifOccupied = new Logic();
+                    if (ifOccupied.occupied(steps, figures)) {
                         throw new OccupiedWayException ("Occupied Way");
-                    }
-                }
             }
             if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                 rst = true;
@@ -54,6 +33,19 @@ public class Logic {
             } else throw new ImpossibleMoveException ("Impossible Move");
         } else throw new FigureNotFoundException("Figure Not Found");
         return rst;
+    }
+
+    public boolean occupied(Cell[] steps, Figure[] figures) {
+        boolean occupiedWay = false;
+        for (int a = 0; a < figures.length; a++) {
+            for (int b = 0; b < steps.length; b++) {
+                if (figures[a].equals(steps[b])) {
+                    occupiedWay = true;
+                    break;
+                }
+            }
+        }
+        return occupiedWay;
     }
 
     public void clean() {
