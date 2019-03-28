@@ -19,30 +19,34 @@ public class Logic {
     }
 
     public boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
-        boolean rst;
+        boolean rst = false;
         int index = this.findBy(source);
-        if (index != -1) {
+        if (index != -1 && dest != null) {
             Cell[] steps = this.figures[index].way(source, dest);
-            Logic ifOccupied = new Logic();
-                    if (ifOccupied.occupied(steps, figures)) {
-                        throw new OccupiedWayException ("Occupied Way");
+            if (occupied(steps)) {
+                throw new OccupiedWayException("Occupied Way");
             }
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
-            } else throw new ImpossibleMoveException ("Impossible Move");
+            try {
+                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                    rst = true;
+                    this.figures[index] = this.figures[index].copy(dest);
+                } else throw new ImpossibleMoveException("Impossible Move");
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                System.out.println("Null Pointer Exception");
+                this.figures[index] = this.figures[index].copy(source);
+            }
         } else throw new FigureNotFoundException("Figure Not Found");
         return rst;
     }
 
-    public boolean occupied(Cell[] steps, Figure[] figures) {
+
+    public boolean occupied(Cell[] steps) {
         boolean occupiedWay = false;
-        for (int a = 0; a < figures.length; a++) {
-            for (int b = 0; b < steps.length; b++) {
-                if (figures[a].equals(steps[b])) {
-                    occupiedWay = true;
-                    break;
-                }
+        for (int b = 0; b < steps.length; b++) {
+            if (findBy(steps[b]) != -1 ) {
+                occupiedWay = true;
+                break;
             }
         }
         return occupiedWay;
