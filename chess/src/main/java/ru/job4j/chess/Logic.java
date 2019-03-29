@@ -30,13 +30,17 @@ public class Logic {
                 if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                     rst = true;
                     this.figures[index] = this.figures[index].copy(dest);
-                } else throw new ImpossibleMoveException("Impossible Move");
+                } else {
+                    throw new ImpossibleMoveException("Impossible Move");
+                }
             } catch (NullPointerException e) {
                 e.printStackTrace();
                 System.out.println("Null Pointer Exception");
                 this.figures[index] = this.figures[index].copy(source);
             }
-        } else throw new FigureNotFoundException("Figure Not Found");
+        } else {
+            throw new FigureNotFoundException("Figure Not Found");
+        }
         return rst;
     }
 
@@ -44,7 +48,7 @@ public class Logic {
     public boolean occupied(Cell[] steps) {
         boolean occupiedWay = false;
         for (int b = 0; b < steps.length; b++) {
-            if (findBy(steps[b]) != -1 ) {
+            if (findBy(steps[b]) != -1) {
                 occupiedWay = true;
                 break;
             }

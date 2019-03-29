@@ -1,7 +1,9 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.Bishop;
 
 /**
  *
@@ -9,7 +11,7 @@ import ru.job4j.chess.figures.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class BishopBlack implements Figure {
+public class BishopBlack extends Bishop implements Figure {
 
     private final Cell position;
 
@@ -24,23 +26,16 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        int deltay = dest.y - source.y;
-        int deltax = dest.x - source.x;
-        int dymod = dest.y - source.y;
-        int dxmod = dest.x - source.x;
-        if (deltay < 0) {
-            dymod = deltay * -1;
-        }
-        if (deltax < 0) {
-            dxmod = deltax * -1;
-        }
-        Cell[] steps = new Cell[dxmod];
-        if (dymod == dxmod) {
-            for (int i = 0; i < dxmod; i++) {
-                steps[i] = Cell.values()[8 * (source.x + (i + 1) * deltax / dxmod) + (source.y + (i + 1) * deltay / dymod)];
+        if (!super.isDiagonal(source, dest)) {
+            throw new ImpossibleMoveException("Impossible Move");
+        } else {
+            Cell[] steps = new Cell[Math.abs(dest.x - source.x)];
+            for (int i = 0; i < Math.abs(dest.x - source.x); i++) {
+                steps[i] = Cell.values()[8 * (source.x + (i + 1) * (source.x - dest.x) / Math.abs(dest.x - source.x)) + (source.y + (i + 1) * (source.y - dest.y) / Math.abs(dest.y - source.y))];
             }
+
+            return steps;
         }
-        return steps;
     }
 
     @Override
