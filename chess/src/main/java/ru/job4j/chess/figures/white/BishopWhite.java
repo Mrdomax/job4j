@@ -30,7 +30,7 @@ public class BishopWhite extends Bishop implements Figure {
         } else {
             Cell[] steps = new Cell[super.dxMod(source, dest)];
             for (int i = 0; i < super.dxMod(source, dest); i++) {
-                steps[i] = Cell.values()[8 * (source.x + (i + 1) * (source.x - dest.x) / super.dxMod(source, dest)) + (source.y + (i + 1) * (source.y - dest.y) / super.dxMod(source, dest))];
+                steps[i] = Cell.values()[8 * (source.x + (i + 1) * (dest.x - source.x) / super.dxMod(source, dest)) + (source.y + (i + 1) * (dest.y - source.y) / super.dxMod(source, dest))];
             }
 
             return steps;

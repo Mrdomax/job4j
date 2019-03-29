@@ -26,18 +26,12 @@ public class Logic {
             if (occupied(steps)) {
                 throw new OccupiedWayException("Occupied Way");
             }
-            try {
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
-                } else {
-                    throw new ImpossibleMoveException("Impossible Move");
-                }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-                System.out.println("Null Pointer Exception");
-                this.figures[index] = this.figures[index].copy(source);
+            if (steps.length <= 0 || !steps[steps.length - 1].equals(dest)) {
+                throw new ImpossibleMoveException("Impossible Move");
             }
+            rst = true;
+            this.figures[index] = this.figures[index].copy(dest);
+
         } else {
             throw new FigureNotFoundException("Figure Not Found");
         }

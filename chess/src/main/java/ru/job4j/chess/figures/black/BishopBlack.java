@@ -29,9 +29,9 @@ public class BishopBlack extends Bishop implements Figure {
         if (!super.isDiagonal(source, dest)) {
             throw new ImpossibleMoveException("Impossible Move");
         } else {
-            Cell[] steps = new Cell[Math.abs(dest.x - source.x)];
-            for (int i = 0; i < Math.abs(dest.x - source.x); i++) {
-                steps[i] = Cell.values()[8 * (source.x + (i + 1) * (source.x - dest.x) / Math.abs(dest.x - source.x)) + (source.y + (i + 1) * (source.y - dest.y) / Math.abs(dest.y - source.y))];
+            Cell[] steps = new Cell[super.dxMod(source, dest)];
+            for (int i = 0; i < super.dxMod(source, dest); i++) {
+                steps[i] = Cell.values()[8 * (source.x + (i + 1) * (dest.x - source.x) / super.dxMod(source, dest)) + (source.y + (i + 1) * (dest.y - source.y) / super.dxMod(source, dest))];
             }
 
             return steps;
