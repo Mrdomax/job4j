@@ -22,17 +22,21 @@ public class ConvertList2Array {
         if (list.size() - (list.size() / rows) * rows > 0) {
             cells = list.size() / rows + 1;
         }
-        int a;
         int[][] array1 = new int[rows][cells];
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cells; j++) {
+        int i = 0;
+        int j = 0;
+            for (Integer a : list) {
                 if (index < list.size()) {
                     a = list.get(index);
                 } else a = 0;
                 array1[i][j] = a;
                 index++;
+                j++;
+                if (j == 3) {
+                    i++;
+                    j = 0;
+                }
             }
-        }
         return array1;
     }
 }
