@@ -32,7 +32,7 @@ public class ConvertList2Array {
                 array1[i][j] = a;
                 index++;
                 j++;
-                if (j == 3) {
+                if (j == cells) {
                     i++;
                     j = 0;
                 }
