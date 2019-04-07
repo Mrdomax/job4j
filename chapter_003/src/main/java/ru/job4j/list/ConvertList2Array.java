@@ -1,6 +1,7 @@
 package ru.job4j.list;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class ConvertList2Array {
     /**
@@ -24,14 +25,32 @@ public class ConvertList2Array {
         int[][] array1 = new int[rows][cells];
         int i = 0;
         int j = 0;
-            for (Integer a : list) {
-                array1[i][j] = a;
-                j++;
-                if (j == cells) {
-                    i++;
-                    j = 0;
-                }
+        for (Integer a : list) {
+            array1[i][j] = a;
+            j++;
+            if (j == cells) {
+                i++;
+                j = 0;
             }
+        }
         return array1;
+    }
+
+    /**
+     * пройтись по всем элементам всех массивов в списке list и добавить их в один общий лист Integer.
+     *
+     * Массивы в списке list могут быть разного размера.
+     * @param list
+     * @return
+     */
+    public List<Integer> convert (List<int[]> list) {
+        List<Integer> result = new ArrayList<Integer>();
+        int index = 0;
+        for (int[] a : list) {
+            for (int x : a) {
+                result.add(index, x);
+                index++;
+            }
+        } return result;
     }
 }
