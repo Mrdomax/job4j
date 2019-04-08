@@ -89,7 +89,7 @@ public class StartUI {
         System.out.println();
         System.out.println();
         System.out.println("------------ Список всех заявок --------------");
-        Item[] items = tracker.findAll();
+        List<Item> items = tracker.findAll();
         for (Item item : items) {
             System.out.println("Имя заявки: " + item.getName());
             System.out.println("Описание заявки: " + item.getDesc());
@@ -136,7 +136,7 @@ public class StartUI {
     private void findName() {
         System.out.println("------------ Поиск заявки по имени --------------");
         String name = this.input.ask("Введите имя заявки :");
-        Item[] items = tracker.findByName(name);
+        List<Item> items = tracker.findByName(name);
         for (Item item : items) {
             System.out.println("Имя заявки: " + item.getName());
             System.out.println("Описание заявки: " + item.getDesc());

@@ -59,7 +59,7 @@ public class MenuTracker {
             System.out.println();
             System.out.println();
             System.out.println("------------ Список всех заявок --------------");
-            Item[] items = tracker.findAll();
+            List<Item> items = tracker.findAll();
             for (Item item : items) {
                 System.out.println("Имя заявки: " + item.getName());
                 System.out.println("Описание заявки: " + item.getDesc());
@@ -141,7 +141,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
-            Item[] items = tracker.findByName(name);
+            List<Item> items = tracker.findByName(name);
             for (Item item : items) {
                 System.out.println("Имя заявки: " + item.getName());
                 System.out.println("Описание заявки: " + item.getDesc());

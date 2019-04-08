@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -46,7 +50,9 @@ public class TrackerTest {
         Item thrd = new Item("test2", "testDescription2", 12345L);
         tracker.add(thrd);
         tracker.delete(id);
-        Item[] expect = {frst, thrd, null};
+        List<Item> expect = new ArrayList<>();
+        expect.add(frst);
+        expect.add(thrd);
         assertThat(tracker.findAll(), is(expect));
 
     }
@@ -60,7 +66,10 @@ public class TrackerTest {
         tracker.add(scnd);
         Item thrd = new Item("test2", "testDescription2", 12345L);
         tracker.add(thrd);
-        Item[] expect = {frst, scnd, thrd};
+        List<Item> expect = new ArrayList<>();
+        expect.add(frst);
+        expect.add(scnd);
+        expect.add(thrd);
         assertThat(tracker.findAll(), is(expect));
     }
 
@@ -73,7 +82,9 @@ public class TrackerTest {
         tracker.add(scnd);
         Item thrd = new Item("test2", "testDescription2", 12345L);
         tracker.add(thrd);
-        Item[] expect = {frst, scnd};
+        List<Item> expect = new ArrayList<>();
+        expect.add(frst);
+        expect.add(scnd);
         assertThat(tracker.findByName("test1"), is(expect));
     }
 
