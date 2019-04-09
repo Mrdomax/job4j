@@ -8,7 +8,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
     private String id;
     private static final Random RN = new Random();
 
@@ -24,7 +24,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(this.position++, item);
         return item;
     }
 
@@ -32,8 +32,8 @@ public class Tracker {
      * Метод возвращает все ячейки массива
      * @return
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public List<Item> findAll() {
+        return items;
     }
 
     /**
@@ -57,15 +57,14 @@ public class Tracker {
      * @param key
      * @return
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[this.position];
-        int k = 0;
-        for (int i = 0; i != this.position; i++) {
-            if (this.items[i] != null && this.items[i].getName().equals(key)) {
-                result[k++] = items[i];
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item a : items) {
+            if (a != null && a.getName().equals(key)) {
+                result.add(a);
             }
         }
-        return Arrays.copyOf(result, k);
+        return result;
     }
 
     /**
@@ -89,15 +88,16 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean result = false;
         for (int i = 0; i != this.position; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                this.items[i] = item;
-                this.items[i].setId(id);
-                result = true;
-                break;
+                if (this.items.get(i) != null && this.items.get(i).getId().equals(id)) {
+                    item.setId(id);
+                    this.items.set(i, item);
+                    result = true;
+                    break;
+                }
             }
+            return result;
         }
-        return result;
-    }
+
 
     /**
      *  Метод public boolean delete(String id) должен удалить ячейку в массиве this.items.
@@ -110,8 +110,8 @@ public class Tracker {
     public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i != this.position; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                System.arraycopy(items, i + 1, items, i, this.position - i);
+            if (this.items.get(i) != null && this.items.get(i).getId().equals(id)) {
+                this.items.remove(i);
                 result = true;
                 break;
             }
