@@ -14,7 +14,7 @@ public class UserConvertTest {
     public void whenListToHashMap() {
         UserConvert one = new UserConvert();
         List<User> list = new ArrayList<>();
-        list.add(new User(1111, "Petr", "Ghy") );
+        list.add(new User(1111, "Petr", "Ghy"));
         HashMap<Integer, User> result = one.process(list);
         String expect = "Petr";
         assertThat(result.get(1111).getName(), is(expect));

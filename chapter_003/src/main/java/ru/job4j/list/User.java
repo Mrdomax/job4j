@@ -6,13 +6,13 @@ public class User implements Comparable<User> {
     private String city;
     public Integer age;
 
-    public User (Integer id, String name, String city) {
+    public User(Integer id, String name, String city) {
         this.id = id;
         this.name = name;
         this.city = city;
     }
 
-    public User (String name, Integer age) {
+    public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }

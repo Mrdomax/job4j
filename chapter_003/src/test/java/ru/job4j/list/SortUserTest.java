@@ -9,11 +9,11 @@ import static org.junit.Assert.assertThat;
 
 public class SortUserTest {
     @Test
-    public void WhenTreeSetThanSortedByAge() {
+    public void whenTreeSetThanSortedByAge() {
         List<User> list = new ArrayList<>();
-        list.add(new User ("Petr", 26));
-        list.add(new User ("Viktor", 25));
-        list.add(new User ("Olga", 24));
+        list.add(new User("Petr", 26));
+        list.add(new User("Viktor", 25));
+        list.add(new User("Olga", 24));
         SortUser treeSort1 = new SortUser();
         Set<User> result = treeSort1.sort1(list);
         assertThat(result.iterator().next().getName(), is("Olga"));

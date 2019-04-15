@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class SinglTest {
 
     @Test
-    public void TrackerFirstSingleCheck() {
+    public void trackerFirstSingleCheck() {
         TrackerFirst tracker = TrackerFirst.INSTANCE;
         TrackerFirst tracker2 = TrackerFirst.INSTANCE;
         boolean expect = true;
@@ -16,7 +16,7 @@ public class SinglTest {
     }
 
     @Test
-    public void TrackerSecondSingleCheck() {
+    public void trackerSecondSingleCheck() {
         TrackerSecond tracker = TrackerSecond.getInstance();
         TrackerSecond tracker2 = TrackerSecond.getInstance();
         boolean expect = true;
@@ -24,7 +24,7 @@ public class SinglTest {
     }
 
     @Test
-    public void TrackerThirdSingleCheck() {
+    public void trackerThirdSingleCheck() {
         TrackerThird tracker = TrackerThird.getInstance();
         TrackerThird tracker2 = TrackerThird.getInstance();
         boolean expect = true;
@@ -32,7 +32,7 @@ public class SinglTest {
     }
 
     @Test
-    public void TrackerFourthSingleCheck() {
+    public void trackerFourthSingleCheck() {
         TrackerFourth tracker = TrackerFourth.getInstance();
         TrackerFourth tracker2 = TrackerFourth.getInstance();
         boolean expect = true;

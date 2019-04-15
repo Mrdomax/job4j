@@ -20,7 +20,8 @@ private Scanner scanner = new Scanner(System.in);
             }
         } if (!exist) {
             throw new MenuOutException("Out of menu range");
-        } return key;
+        }
+        return key;
 
     }
     }

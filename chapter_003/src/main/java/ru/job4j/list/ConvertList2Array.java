@@ -43,7 +43,7 @@ public class ConvertList2Array {
      * @param list
      * @return
      */
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<Integer>();
         int index = 0;
         for (int[] a : list) {
