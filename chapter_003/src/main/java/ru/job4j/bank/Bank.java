@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Bank {
 
-    private TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
+    public TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
 
     public void addUser(User user) {
         this.treemap.put(user, new ArrayList<>());
@@ -19,37 +19,55 @@ public class Bank {
         this.treemap.remove(user);
     }
 
+//    public User findByPassport(String passport) {
+//        Set<User> find = treemap.keySet();
+//        Iterator<User> itr = find.iterator();
+//        User result = null;
+//        while(itr.hasNext()) {
+//            if(itr.next().getPassport().equals(passport)) {
+//               result = itr.next();
+//               break;
+//            }
+//        }return result;
+//    }
+
     public User findByPassport(String passport) {
         Set<User> find = treemap.keySet();
-        Iterator<User> itr = find.iterator();
         User result = null;
-        while(itr.hasNext()) {
-            if(itr.next().getPassport().equals(passport)) {
-               result = itr.next();
-               break;
-            }
-        }return result;
-    }
-
-    public Account findAccountByRequisite(String passport, String requisite) {
-        ArrayList<Account> list = this.treemap.get(findByPassport(passport));
-        Account result = null;
-        for (Account ac: list) {
-            if(ac.getReqs().equals(requisite)) {
-                result = ac;
+        for (User aa: find) {
+            if(aa.getPassport().equals(passport)) {
+                result = aa;
                 break;
             }
         } return result;
     }
 
+    public Account findAccountByRequisite(String passport, String requisite) {
+        Account result = null;
+        if(findByPassport(passport) != null) {
+            ArrayList<Account> list = this.treemap.get(findByPassport(passport));
+            for (Account ac : list) {
+                if (ac.getReqs().equals(requisite)) {
+                    result = ac;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
 
 
     public void addAccountToUser(String passport, Account account) {
-        this.treemap.get(findByPassport(passport)).add(account);
+        if(findByPassport(passport) != null) {
+            this.treemap.get(findByPassport(passport)).add(account);
+        }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        this.treemap.get(findByPassport(passport)).remove(account);
+        if(findByPassport(passport) != null) {
+            this.treemap.get(findByPassport(passport)).remove(account);
+        }
     }
 
     public List<Account> getUserAccounts (String passport) {
@@ -61,31 +79,28 @@ public class Bank {
     }
 
     public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
-        return this.treemap.get(findByPassport(srcPassport)).contains(findAccountByRequisite(srcPassport, srcRequisite))
-                && this.treemap.get(findByPassport(destPassport)).contains(findAccountByRequisite(destPassport, dstRequisite))
-                && getActualAccount(findByPassport(srcPassport), findAccountByRequisite(srcPassport, srcRequisite)).transfer(
-                getActualAccount(findByPassport(destPassport), findAccountByRequisite(destPassport, dstRequisite)), amount);
+        boolean result = false;
+        if (amount > 0 &&
+                findByPassport(srcPassport) != null &&
+                findByPassport(destPassport) != null &&
+                findAccountByRequisite(srcPassport, srcRequisite) != null &&
+                findAccountByRequisite(destPassport, dstRequisite) != null &&
+                findAccountByRequisite(srcPassport, srcRequisite).values >= amount) {
+            result = getActualAccount(findByPassport(srcPassport), findAccountByRequisite(srcPassport, srcRequisite)).transfer(
+                    getActualAccount(findByPassport(destPassport), findAccountByRequisite(destPassport, dstRequisite)), amount);
+        } return result;
     }
 
     private Account getActualAccount(User user, Account account) {
         ArrayList<Account> list = this.treemap.get(user);
-        return list.get(list.indexOf(account));
-    }
-
-    public void deleteAccount(User user, Account account) {
-        this.treemap.get(user).remove(account);
-    }
-
-    public List<Account> getAccounts(User user) {
-        return this.treemap.get(user);
-    }
-
-    public boolean transfer(User user1, Account account1,
-                            User user2, Account account2, double amount) {
-        return this.treemap.get(user1).contains(account1)
-                && this.treemap.get(user2).contains(account2)
-                && getActualAccount(user1, account1).transfer(
-                getActualAccount(user2, account2), amount);
+        Account result = null;
+        for (Account aa: list) {
+            if(aa.equals(account)) {
+                result = list.get(list.indexOf(account));
+                break;
+            }
+        }
+        return result;
     }
 
     public String toString() {
