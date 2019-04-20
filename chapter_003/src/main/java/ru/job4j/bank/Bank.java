@@ -44,8 +44,9 @@ public class Bank {
 
     public Account findAccountByRequisite(String passport, String requisite) {
         Account result = null;
-        if(findByPassport(passport) != null) {
-            ArrayList<Account> list = this.treemap.get(findByPassport(passport));
+        User user = findByPassport(passport);
+        if(user != null) {
+            ArrayList<Account> list = this.treemap.get(user);
             for (Account ac : list) {
                 if (ac.getReqs().equals(requisite)) {
                     result = ac;
@@ -56,17 +57,17 @@ public class Bank {
         return result;
     }
 
-
-
     public void addAccountToUser(String passport, Account account) {
-        if(findByPassport(passport) != null) {
-            this.treemap.get(findByPassport(passport)).add(account);
+        User user = findByPassport(passport);
+        if(user != null) {
+            this.treemap.get(user).add(account);
         }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        if(findByPassport(passport) != null) {
-            this.treemap.get(findByPassport(passport)).remove(account);
+        User user = findByPassport(passport);
+        if(user != null) {
+            this.treemap.get(user).remove(account);
         }
     }
 
@@ -80,14 +81,17 @@ public class Bank {
 
     public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
+        User srcUser = findByPassport(srcPassport);
+        User destUser = findByPassport(destPassport);
+        Account srcAccount = findAccountByRequisite(srcPassport, srcRequisite);
+        Account destAccount = findAccountByRequisite(destPassport, dstRequisite);
         if (amount > 0 &&
-                findByPassport(srcPassport) != null &&
-                findByPassport(destPassport) != null &&
-                findAccountByRequisite(srcPassport, srcRequisite) != null &&
-                findAccountByRequisite(destPassport, dstRequisite) != null &&
-                findAccountByRequisite(srcPassport, srcRequisite).values >= amount) {
-            result = getActualAccount(findByPassport(srcPassport), findAccountByRequisite(srcPassport, srcRequisite)).transfer(
-                    getActualAccount(findByPassport(destPassport), findAccountByRequisite(destPassport, dstRequisite)), amount);
+                srcUser != null &&
+                destUser != null &&
+                srcAccount != null &&
+                destAccount != null &&
+                srcAccount.values >= amount) {
+            result = srcAccount.transfer(destAccount, amount);
         } return result;
     }
 
