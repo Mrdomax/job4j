@@ -10,9 +10,15 @@ public class ListCompare implements Comparator<String> {
     public int compare(String left, String right) {
         int result = 0;
         for (int i = 0; i < left.length() && i < right.length(); i++) {
-            result = result + Character.compare(left.charAt(i), right.charAt(i));
+            result = Character.compare(left.charAt(i), right.charAt(i));
+            if (result != 0) {
+                break;
+            }
         }
-        result = result + left.length() - right.length();
+        if (result == 0) {
+            result = left.length() - right.length();
+        }
+
         return result;
     }
 }
