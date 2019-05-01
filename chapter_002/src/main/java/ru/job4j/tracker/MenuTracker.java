@@ -1,33 +1,28 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class MenuTracker {
-    /**
-     * @param хранит ссылку на объект .
-     */
-    private Input input;
-    /**
-     * @param хранит ссылку на объект .
-     */
-    private Tracker tracker;
 
+    private Input input;
+    private Tracker tracker;
     private StartUI ui;
-    /**
-     * @param хранит ссылку на массив типа UserAction.
-     */
     private List<UserAction> actions = new ArrayList<>();
     private int key = 0;
+    private final Consumer<String> output;
+
     /**
      * Конструктор.
      *
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker, StartUI ui) {
+    public MenuTracker(Input input, Tracker tracker, StartUI ui, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
         this.ui = ui;
+        this.output = output;
     }
     private class AddItem extends BaseAction {
 
@@ -37,14 +32,13 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Adding new item --------------");
+            output.accept("------------ Adding new item --------------");
             String name = input.ask("Please, provide item name:");
             String desc = input.ask("Please, provide item description:");
             Item item = new Item(name, desc);
             tracker.add(item);
-            System.out.println("------------ New Item with Id : " + item.getId());
-            System.out.println("------------ New Item with Name : " + item.getName());
-            System.out.println("------------ New Item with Description : " + item.getDesc());
+            output.accept(String.format("Name: %s| Desc: %s| Id: %s",
+                    item.getName(), item.getDesc(), item.getId()));
         }
     }
 
@@ -54,20 +48,11 @@ public class MenuTracker {
             super(key, name);
         }
 
-        @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println();
-            System.out.println();
-            System.out.println("------------ Список всех заявок --------------");
-            List<Item> items = tracker.findAll();
-            for (Item item : items) {
-                System.out.println("Имя заявки: " + item.getName());
-                System.out.println("Описание заявки: " + item.getDesc());
-                System.out.println("Id заявки: " + item.getId());
-                System.out.println("----------------------------------------------");
+            for (Item item : tracker.findAll()) {
+                output.accept(String.format("Name: %s| Desc: %s| Id: %s",
+                        item.getName(), item.getDesc(), item.getId()));
             }
-            System.out.println();
-            System.out.println();
         }
     }
 
@@ -81,15 +66,15 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Edit item --------------");
+            output.accept("------------ Edit item --------------");
             String id = input.ask("Введите id заявки :");
             String name = input.ask("Введите новое имя заявки :");
             String desc = input.ask("Введите новое описание заявки :");
             Item item = new Item(name, desc, id);
             if (tracker.replace(id, item)) {
-                System.out.println("Ваша заявка отредактирована");
+                output.accept("Ваша заявка отредактирована");
             } else {
-                System.out.println("Ваша заявка не отредактирована");
+                output.accept("Ваша заявка не отредактирована");
             }
         }
     }
@@ -102,12 +87,12 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Delete item --------------");
+            output.accept("------------ Delete item --------------");
             String id = input.ask("Введите id заявки :");
             if (tracker.delete(id)) {
-                System.out.println("Ваша заявка удалена");
+                output.accept("Ваша заявка удалена");
             } else {
-                System.out.println("Ваша заявка не удалена");
+                output.accept("Ваша заявка не удалена");
             }
         }
     }
@@ -120,16 +105,14 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Find item by Id --------------");
+            output.accept("------------ Find item by Id --------------");
             String id = input.ask("Введите id заявки :");
             Item item = tracker.findById(id);
-            System.out.println("Имя заявки: " + item.getName());
-            System.out.println("Описание заявки: " + item.getDesc());
-            System.out.println("Id заявки: " + item.getId());
-
+            output.accept(String.format("Name: %s| Desc: %s| Id: %s",
+                    item.getName(), item.getDesc(), item.getId()));
         }
 
-    }
+        }
 
     private class FindItemsByName extends BaseAction {
 
@@ -139,14 +122,12 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Поиск заявки по имени --------------");
+            output.accept("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
             List<Item> items = tracker.findByName(name);
             for (Item item : items) {
-                System.out.println("Имя заявки: " + item.getName());
-                System.out.println("Описание заявки: " + item.getDesc());
-                System.out.println("Id заявки: " + item.getId());
-                System.out.println("----------------------------------------------");
+                output.accept(String.format("Name: %s| Desc: %s| Id: %s",
+                        item.getName(), item.getDesc(), item.getId()));
             }
         }
     }
@@ -160,7 +141,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Exit Program --------------");
+            output.accept("------------ Exit Program --------------");
             ui.stop();
         }
     }
@@ -205,10 +186,10 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
-        System.out.println("Меню.");
+        output.accept("Меню.");
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }
