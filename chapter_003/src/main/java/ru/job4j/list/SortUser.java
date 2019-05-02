@@ -4,13 +4,13 @@ import java.util.*;
 
 public class SortUser {
 
-    public Set<User> sort1 (List<User> list) {
+    public Set<User> sort1(List<User> list) {
         return new TreeSet<>(list);
     }
 
-    public List<User> sortNameLength (List<User> list) {
+    public List<User> sortNameLength(List<User> list) {
         list.sort(
-                new Comparator<User>(){
+                new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
                 Integer o1Length = o1.getName().length();
@@ -21,9 +21,9 @@ public class SortUser {
         return list;
     }
 
-    public List<User> sortByAllFields (List<User> list) {
+    public List<User> sortByAllFields(List<User> list) {
         list.sort(
-                new Comparator<User>(){
+                new Comparator<User>() {
                     @Override
                     public int compare(User o1, User o2) {
                         int value = o1.getName().compareTo(o2.getName());

@@ -16,7 +16,7 @@ public class BankTest {
     }
     @Test
     //Проверяем что keySet() работает после определения compareTo() в классе User
-    public void whenAddUsersThanTreeMapGotIt(){
+    public void whenAddUsersThanTreeMapGotIt() {
         Bank bank = new Bank();
         User user1 = new User("Artiom", "A001");
         User user2 = new User("Alex", "A002");
@@ -76,7 +76,7 @@ public class BankTest {
         bank.add(user1, account);
         bank.deleteAccountFromUser("A001", account);
         Account result = null;
-        assertThat(bank.findAccountByRequisite("A001","AO Sun"), is(result));
+        assertThat(bank.findAccountByRequisite("A001", "AO Sun"), is(result));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class BankTest {
         bank.addUser(user1);
         bank.add(user1, account);
         bank.add(user1, account1);
-        bank.transferMoney("A001","AO Sun", "A001", "AO Vun", 100);
+        bank.transferMoney("A001", "AO Sun", "A001", "AO Vun", 100);
         boolean expect = account.values == 100 && account1.values == 400;
         assertThat(expect, is(true));
     }
@@ -120,7 +120,7 @@ public class BankTest {
         bank.addUser(user1);
         bank.add(user1, account);
         bank.add(user1, account1);
-        assertThat(bank.transferMoney("A001","AO Sun1", "A001", "AO Vun", 100), is(false));
+        assertThat(bank.transferMoney("A001", "AO Sun1", "A001", "AO Vun", 100), is(false));
     }
     @Test
     //Проверяем метод transferMoney() когда недостаточно денег для перевода
@@ -132,6 +132,6 @@ public class BankTest {
         bank.addUser(user1);
         bank.add(user1, account);
         bank.add(user1, account1);
-        assertThat(bank.transferMoney("A001","AO Sun", "A001", "AO Vun", 1000), is(false));
+        assertThat(bank.transferMoney("A001", "AO Sun", "A001", "AO Vun", 1000), is(false));
     }
 }
