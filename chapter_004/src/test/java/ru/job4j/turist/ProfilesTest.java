@@ -14,8 +14,11 @@ public class ProfilesTest {
     public void whenCollectAddressesThenListOfAddresses() {
         Profiles profiles1 = new Profiles();
         Address address1 = new Address();
+        address1.setCity("Msk");
         Address address2 = new Address();
+        address2.setCity("Msk");
         Address address3 = new Address();
+        address3.setCity("Spb");
         Profile profile1 = new Profile();
         Profile profile2 = new Profile();
         Profile profile3 = new Profile();
@@ -23,7 +26,7 @@ public class ProfilesTest {
         profile2.setAddress(address2);
         profile3.setAddress(address3);
         List<Profile> profiles = Arrays.asList(profile1, profile2, profile3);
-        List<Address> expected = Arrays.asList(address1, address2, address3);
+        List<Address> expected = Arrays.asList(address1, address3);
         List<Address> result = profiles1.collect(profiles);
         assertThat(result.equals(expected), is(true));
     }
