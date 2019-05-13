@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Bank {
@@ -21,41 +22,46 @@ public class Bank {
 
 //    public User findByPassport(String passport) {
 //        Set<User> find = treemap.keySet();
-//        Iterator<User> itr = find.iterator();
 //        User result = null;
-//        while(itr.hasNext()) {
-//            if(itr.next().getPassport().equals(passport)) {
-//               result = itr.next();
-//               break;
+//        for (User aa: find) {
+//            if (aa.getPassport().equals(passport)) {
+//                result = aa;
+//                break;
 //            }
-//        }return result;
+//        } return result;
 //    }
 
     public User findByPassport(String passport) {
         Set<User> find = treemap.keySet();
-        User result = null;
-        for (User aa: find) {
-            if (aa.getPassport().equals(passport)) {
-                result = aa;
-                break;
-            }
-        } return result;
+        User result = find.stream().filter(x -> x.getPassport().equals(passport)).findFirst().orElse(null);;
+        return result;
     }
 
+    //    public Account findAccountByRequisite(String passport, String requisite) {
+//        Account result = null;
+//        User user = findByPassport(passport);
+//        if (user != null) {
+//            ArrayList<Account> list = this.treemap.get(user);
+//            for (Account ac : list) {
+//                if (ac.getReqs().equals(requisite)) {
+//                    result = ac;
+//                    break;
+//                }
+//            }
+//        }
+//        return result;
+//    }
+
     public Account findAccountByRequisite(String passport, String requisite) {
-        Account result = null;
         User user = findByPassport(passport);
+        Account result = null;
         if (user != null) {
             ArrayList<Account> list = this.treemap.get(user);
-            for (Account ac : list) {
-                if (ac.getReqs().equals(requisite)) {
-                    result = ac;
-                    break;
-                }
-            }
+            result = list.stream().filter(e -> e.getReqs().equals(requisite)).findFirst().orElse(null);
         }
         return result;
     }
+
 
     public void addAccountToUser(String passport, Account account) {
         User user = findByPassport(passport);
@@ -72,7 +78,8 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String passport) {
-        return this.treemap.get(findByPassport(passport));
+        List<Account> result = this.treemap.get(findByPassport(passport));
+        return result;
     }
 
     public void add(User user, Account account) {
@@ -96,17 +103,24 @@ public class Bank {
         return result;
     }
 
+//    private Account getActualAccount(User user, Account account) {
+//        ArrayList<Account> list = this.treemap.get(user);
+//        Account result = null;
+//        for (Account aa: list) {
+//            if (aa.equals(account)) {
+//                result = list.get(list.indexOf(account));
+//                break;
+//            }
+//        }
+//        return result;
+//    }
+
     private Account getActualAccount(User user, Account account) {
         ArrayList<Account> list = this.treemap.get(user);
-        Account result = null;
-        for (Account aa: list) {
-            if (aa.equals(account)) {
-                result = list.get(list.indexOf(account));
-                break;
-            }
-        }
+        Account result = list.stream().filter(e -> e.equals(account)).findFirst().orElse(null);
         return result;
     }
+
 
     public String toString() {
         return "Bank{" + "accounts=" + treemap + "}";
