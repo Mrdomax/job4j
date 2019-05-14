@@ -12,7 +12,7 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        List<Person> persons = phones.find("Petr");
+        var persons = phones.find("Petr");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 
@@ -22,7 +22,7 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        List<Person> persons = phones.find("Ars");
+        var persons = phones.find("Ars");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 
@@ -32,7 +32,7 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        List<Person> persons = phones.find("534");
+        var persons = phones.find("534");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 
@@ -42,7 +42,7 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        List<Person> persons = phones.find("Bry");
+        var persons = phones.find("Bry");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 }
