@@ -1,5 +1,7 @@
 package ru.job4j.list;
 
+import java.util.Objects;
+
 public class User implements Comparable<User> {
     private Integer id;
     private String name;

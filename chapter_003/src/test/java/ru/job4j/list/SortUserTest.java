@@ -10,10 +10,11 @@ import static org.junit.Assert.assertThat;
 public class SortUserTest {
     @Test
     public void whenTreeSetThanSortedByAge() {
-        List<User> list = new ArrayList<>();
-        list.add(new User("Petr", 26));
-        list.add(new User("Viktor", 25));
-        list.add(new User("Olga", 24));
+        List<User> list = List.of(
+        new User("Petr", 26),
+        new User("Viktor", 25),
+        new User("Olga", 24)
+        );
         SortUser treeSort1 = new SortUser();
         Set<User> result = treeSort1.sort1(list);
         assertThat(result.iterator().next().getName(), is("Olga"));
@@ -21,23 +22,27 @@ public class SortUserTest {
 
     @Test
     public void whenListThanSortedByNameLength() {
-        List<User> list = new ArrayList<>();
-        list.add(new User("Vika", 22));
-        list.add(new User("Viktor", 23));
-        list.add(new User("Vik", 21));
-        SortUser sortedNameLenrth = new SortUser();
-        List<User> result = sortedNameLenrth.sortNameLength(list);
+        List<User> list = List.of(
+        new User("Vika", 22),
+        new User("Viktor", 23),
+        new User("Vik", 21)
+        );
+        ArrayList<User> list1 = new ArrayList<>(list);
+        SortUser sortedNameLength = new SortUser();
+        List<User> result = sortedNameLength.sortNameLength(list1);
         assertThat(result.iterator().next().getName(), is("Vik"));
     }
 
     @Test
     public void whenListThanSortedByAllFields() {
-        List<User> list = new ArrayList<>();
-        list.add(new User("Vika", 22));
-        list.add(new User("Vika", 21));
-        list.add(new User("Viktor", 23));
+        List<User> list = List.of(
+        new User("Vika", 22),
+        new User("Vika", 21),
+        new User("Viktor", 23)
+        );
+        ArrayList<User> list1 = new ArrayList<>(list);
         SortUser sortedNameAge = new SortUser();
-        List<User> result = sortedNameAge.sortByAllFields(list);
+        List<User> result = sortedNameAge.sortByAllFields(list1);
         assertThat(result.iterator().next().getAge(), is(21));
     }
 }
