@@ -7,7 +7,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 public class WinnersTest {
     @Test
-    public void WhenLevelOfThanBoundsLessList() {
+    public void whenLevelOfThanBoundsLessList() {
         Winners winners = new Winners();
         Student student1 = new Student(10, "Ivan");
         Student student2 = new Student(20, "Dima");

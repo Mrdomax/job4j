@@ -62,7 +62,7 @@ public class Logic3T {
     public boolean hasGap() {
         boolean result = false;
         for (int i = 0; i != table.length; i++) {
-            for (int j = 0; j!= table.length; j++) {
+            for (int j = 0; j != table.length; j++) {
                 Figure3T cell = this.table[i][j];
                 if (!cell.hasMarkO() && !cell.hasMarkX()) {
                     result = true;
