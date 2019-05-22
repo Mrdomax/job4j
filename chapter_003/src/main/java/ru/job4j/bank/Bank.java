@@ -33,7 +33,7 @@ public class Bank {
 
     public User findByPassport(String passport) {
         Set<User> find = treemap.keySet();
-        User result = find.stream().filter(x -> x.getPassport().equals(passport)).findFirst().orElse(null);;
+        User result = find.stream().filter(x -> x.getPassport().equals(passport)).findFirst().orElse(null);
         return result;
     }
 
