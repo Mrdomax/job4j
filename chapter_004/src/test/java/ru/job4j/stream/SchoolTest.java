@@ -55,7 +55,7 @@ public class SchoolTest {
         students.add(three);
         int start = 0;
         int end = 50;
-        List<Student> result = school.collect(students,student -> student.diapazone(start, end));
+        List<Student> result = school.collect(students, student -> student.diapazone(start, end));
         List<Student> expected = Arrays.asList(one, two);
         assertThat(result.equals(expected), is(true));
     }

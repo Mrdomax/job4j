@@ -8,9 +8,9 @@ import static org.hamcrest.MatcherAssert.*;
 public class MatrixToListTest {
 
     @Test
-    public void WhenCollectIntegerThanReturnList() {
+    public void whenCollectIntegerThanReturnList() {
         MatrixToList newMatrix = new MatrixToList();
-        Integer[][] matrix = {{1, 2},{3, 4}};
+        Integer[][] matrix = {{1, 2}, {3, 4}};
         List<Integer> expected = Arrays.asList(1, 2, 3, 4);
         List<Integer> result = newMatrix.convert(matrix);
         assertThat(result, is(expected));
