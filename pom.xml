@@ -21,6 +21,7 @@
         <module>puzzle</module>
         <module>chess</module>
         <module>tictactoe</module>
+        <module>chapter_junior</module>
     </modules>
 
     <build>
