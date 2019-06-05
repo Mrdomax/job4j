@@ -3,6 +3,9 @@ package ru.job4j.collections.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Итератор по двухмерному массиву
+ */
 public class MatrixIterator implements Iterator {
 
     private final int[][] massive;
