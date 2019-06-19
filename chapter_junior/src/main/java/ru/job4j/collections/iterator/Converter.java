@@ -1,29 +1,26 @@
 package ru.job4j.collections.iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class Converter implements Iterator {
-
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public Integer next() {
-        return null;
-    }
-
+public class Converter {
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
-        return new Iterator<Integer>() {
+        return new Iterator<>() {
+            Iterator<Integer> inner = it.next();
             @Override
             public boolean hasNext() {
-                return false;
+                while (!inner.hasNext() && it.hasNext()) {
+                    inner = it.next();
+                } return inner.hasNext();
             }
 
             @Override
             public Integer next() {
-                return null;
+                hasNext();
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return inner.next();
             }
         };
     }
