@@ -1,13 +1,11 @@
 package ru.job4j.collections.generic;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
-    public int size;
-public int count = 0;
-    int position = 0;
+    private int size;
+    private int count = 0;
     private int index = 0;
 
     private Object[] objects;
@@ -30,7 +28,9 @@ public int count = 0;
      * @param model параметр
      */
     public void set(int index, T model) {
-        this.objects[index] = model;
+        if (index < count) {
+            this.objects[index] = model;
+        }
     }
 
     /**
@@ -39,19 +39,41 @@ public int count = 0;
      * @param index параметр
      */
     public void remove(int index) {
-
-        for (int i = index; i != objects.length - 1; i++) {
-            objects[i] = objects[i + 1];
+        if (index < count) {
+            System.arraycopy(objects, index + 1, objects, index, count - index - 1);
+            objects[objects.length - 1] = null;
+            count--;
         }
-        objects[objects.length - 1] = null;
     }
 
     /**
      * возвращает элемент, расположенный по указанному индексу
-     * @param position параметр
+     * @param index параметр
      */
-    public T get(int position) {
-        return (T) this.objects[position];
+    public T get(int index) {
+        return (T) this.objects[index];
+    }
+
+    public class MyIterator implements Iterator<T> {
+        private int position = 0;
+        @Override
+        public boolean hasNext() {
+            boolean result = false;
+            if (position < count) {
+                result = true;
+            }
+            return result;
+        }
+
+        @Override
+        public T next() {
+            T nextObject;
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            nextObject = (T) objects[position++];
+            return nextObject;
+        }
     }
 
     /**
@@ -60,28 +82,6 @@ public int count = 0;
      */
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-
-            @Override
-            public boolean hasNext() {
-                boolean result = false;
-                if (position < count) {
-                   result = true;
-                }
-                return result;
-            }
-
-            @Override
-            public T next() {
-                T nextObject;
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                nextObject = (T) objects[position];
-                position++;
-                return nextObject;
-
-            }
-        };
+        return new MyIterator();
     }
 }
