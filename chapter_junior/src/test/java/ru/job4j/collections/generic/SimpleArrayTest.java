@@ -2,13 +2,15 @@ package ru.job4j.collections.generic;
 
 
 import org.junit.Test;
+
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class SimpleArrayTest {
-
 
     @Test
     public void whenAddIntegerThanMassiveGetThis() {
@@ -78,10 +80,10 @@ public class SimpleArrayTest {
     @Test
     public void iteratorNextTest() {
         SimpleArray simpleArray = new SimpleArray(2);
-        SimpleArray.MyIterator myIterator = simpleArray.new MyIterator();
+        Iterator iterator = simpleArray.iterator();
         simpleArray.add(10);
         simpleArray.add(11);
-        assertThat(myIterator.next(), is(10));
-        assertThat(myIterator.next(), is(11));
+        assertThat(iterator.next(), is(10));
+        assertThat(iterator.next(), is(11));
     }
 }
