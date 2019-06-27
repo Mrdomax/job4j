@@ -26,6 +26,13 @@ public class DinamicLinkedList<E> implements Iterable {
         return result.data;
     }
 
+    public E delete() {
+        Node<E> temp = node;
+        node = node.next;
+        this.size--;
+        return temp.data;
+    }
+
     public class MyIterator implements Iterator<E> {
         private int position = 0;
         private int expectedModCount = modCount;
