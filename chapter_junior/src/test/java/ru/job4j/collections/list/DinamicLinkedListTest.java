@@ -55,4 +55,16 @@ public class DinamicLinkedListTest {
         assertThat(myIterator.next(), is(10));
         assertThat(myIterator.hasNext(), is(false));
     }
+
+    @Test
+    public void whenDeleteThanDeletedAndReturnData() {
+        DinamicLinkedList dinamicLinkedList = new DinamicLinkedList();
+        dinamicLinkedList.add(10);
+        dinamicLinkedList.add(11);
+        assertThat(dinamicLinkedList.delete(), is(11));
+        DinamicLinkedList.MyIterator myIterator = dinamicLinkedList.new MyIterator();
+        assertThat(myIterator.hasNext(), is(true));
+        assertThat(myIterator.next(), is(10));
+        assertThat(myIterator.hasNext(), is(false));
+    }
 }
