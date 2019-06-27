@@ -23,4 +23,10 @@ public class SimpleStackTest {
         simpleStack.push(1);
         assertThat(simpleStack.getValue(0), is(1));
     }
+
+    @Test
+    public void whenEmptyThanReturnTrue() {
+        SimpleStack simpleStack = new SimpleStack();
+        assertThat(simpleStack.isEmpty(), is(true));
+    }
 }

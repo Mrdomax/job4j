@@ -15,4 +15,9 @@ public class SimpleStack<T> {
     public T getValue(int index) {
         return dinamicLinkedList.get(index);
     }
+
+    public boolean isEmpty() {
+        return  !dinamicLinkedList.iterator().hasNext();
+    }
+
 }
