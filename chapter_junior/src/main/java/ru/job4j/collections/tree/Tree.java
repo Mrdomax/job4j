@@ -11,6 +11,35 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         this.root = new Node<>(value);
     }
 
+//    public boolean isBinary() {
+//        boolean result = true;
+//        MyIterator iterator = new MyIterator();
+//        while (iterator.hasNext()) {
+//        if (findBy(iterator.next()).get().leaves().size() > 2) {
+//            result = false;
+//            break;
+//        }
+//        }
+//        return result;
+//    }
+
+    public boolean isBinary() {
+        boolean result = true;
+        Queue<Node<E>> data = new LinkedList<>();
+        data.offer(root);
+        while (!data.isEmpty()) {
+            Node<E> el = data.poll();
+            if (el.leaves().size() > 2) {
+                result = false;
+                break;
+            }
+            for (Node<E> child : el.leaves()) {   // Для каждого child из связанного списка el(если el содержит не одну ноду, а связанный список)
+                data.offer(child);                // Добавляем в очередь data все элементы связанного списка el
+            }
+        }
+            return result;
+    }
+
     @Override
     public boolean add(E parent, E child) {
         boolean result = false;
